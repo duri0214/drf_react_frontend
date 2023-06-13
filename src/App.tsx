@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import GeneralHeader from './pages/GeneralHeader';
+import GeneralHomeView from './pages/GeneralHomeView';
+import HomeView from './pages/daily_report/HomeView';
+import DetailView from './pages/daily_report/DetailView';
+import ProfileView from './pages/profile/ProfileView';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <GeneralHeader />
+        <div>
+          <Routes>
+            <Route path="/" element={<GeneralHomeView />} />
+            <Route path="/daily_report" element={<HomeView />} />
+            <Route path="/daily_report/:id" element={<DetailView />} />
+            <Route path="/profile" element={<ProfileView />} />
+            <Route path="*" element={<h4>not found...</h4>} />
+          </Routes>
+        </div>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
