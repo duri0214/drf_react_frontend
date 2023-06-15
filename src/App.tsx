@@ -5,6 +5,7 @@ import GeneralHomeView from './pages/GeneralHomeView';
 import HomeView from './pages/daily_report/HomeView';
 import DetailView from './pages/daily_report/DetailView';
 import ProfileView from './pages/profile/ProfileView';
+import Page404 from "./pages/Page404";
 
 const App: React.FC = () => {
   return (
@@ -17,7 +18,7 @@ const App: React.FC = () => {
             <Route path="/daily_report" element={<HomeView />} />
             <Route path="/daily_report/:id" element={<DetailView />} />
             <Route path="/profile" element={<ProfileView />} />
-            <Route path="*" element={<h4>not found...</h4>} />
+            <Route path="*" element={<Page404 />} />
           </Routes>
         </div>
       </Router>

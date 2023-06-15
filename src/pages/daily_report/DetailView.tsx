@@ -7,20 +7,28 @@ import { useParams } from "react-router-dom";
 const DetailView: React.FC = () => {
   const [entity, setEntity] = useState<DetailContentEntity>({} as DetailContentEntity)
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   // get url param
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    // TODO: id を ifで調べないと赤波線が出るんだけど結局これ404ハンドリングだよな
     if (id) {
       getReportDetail(id)
         .then((values: DetailContentEntity) => {
           setEntity(values)
           setLoading(false)
         })
+        .catch((e: Error) => {
+          setError(e.message);
+          setLoading(false);
+        });
     }
   },[id])
+
+  if (error) {
+    return <h1>{error}</h1>;
+  }
 
   return (
     <div>
